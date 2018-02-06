@@ -1,0 +1,15 @@
+body {
+    background-color: #323232;
+}
+
+#mittCanvas {
+    background-color: black;
+    display: block;
+    margin: auto;
+}
+
+#resultater {
+    color: white;
+    font-size: 40px;
+    text-align: center;
+}
