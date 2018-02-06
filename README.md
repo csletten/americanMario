@@ -1,2 +1,2 @@
 # americanMario
-Mario in 2D with an american theme
+Mario in 2D with an American theme
