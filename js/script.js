@@ -1,5 +1,4 @@
 /*
-
 Likheter mellom personene:
 Løpe
 Stå stille
