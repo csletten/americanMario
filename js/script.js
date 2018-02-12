@@ -5,9 +5,10 @@ Stå stille
 Ulikheter:
 Hoppe
 */
+var jumping = false;
 
 class Person {
-    constructor(health, weapon, speed, size, shape, fileName){
+    constructor(health, weapon, speed, size, shape, fileName) {
         this.health = health;
         this.weapon = weapon;
         this.speed = speed;
@@ -18,9 +19,36 @@ class Person {
 }
 
 class Weapon {
-    constructor(type, firerate, fileName){
+    constructor(type, firerate, fileName) {
         this.type = type;
         this.firerate = firerate;
         this.fileName = fileName;
+    }
+}
+
+var bodyEl = document.querySelector("body");
+var boksEl = document.getElementById("figur");
+
+var venstre = 530;
+var topp = 200;
+
+var fart = 10;
+
+bodyEl.addEventListener("keydown", flyttboks);
+
+function flyttboks(e) {
+    if (e.keyCode === 37) {
+        venstre -= fart;
+    } else if (e.keyCode === 39) {
+        venstre += fart;
+    } else if (e.keyCode === 38) {
+        jumping = true;
+    }
+    boksEl.style.top = topp + "px";
+    boksEl.style.left = venstre + "px";
+
+    if (jumping){
+        topp -= fart;
+        jumping = false;
     }
 }
