@@ -1,20 +1,25 @@
-/*
-Likheter mellom personene:
-Løpe
-Stå stille
-Ulikheter:
-Hoppe
-*/
+var canvas = document.getElementById("mainCanvas");
+var ctx = canvas.getContext("2d");
+var bodyEl = document.querySelector("body");
 var jumping = false;
 
+drawMainRect();
+
 class Person {
-    constructor(health, weapon, speed, size, shape, fileName) {
+    constructor(xPos, yPos, health, speed, size, fileName) {
+        this.xPos = xPos;
+        this.yPos = yPos;
         this.health = health;
-        this.weapon = weapon;
-        this.speed = speed;
+        this.xVelocity = xVelocity;
+        this.yVelocity = yVelocity;
         this.size = size;
-        this.shape = shape;
         this.fileName = fileName;
+    }
+
+    draw() {
+        var img = document.createElement("img");
+        img.src = "img/" + this.fileName;
+        ctx.drawImage(img, xPos, yPos);
     }
 }
 
@@ -26,29 +31,35 @@ class Weapon {
     }
 }
 
-var bodyEl = document.querySelector("body");
-var boksEl = document.getElementById("figur");
 
-var venstre = 530;
-var topp = 200;
+var mainSprite = new Person("50px", "50px", 100, 0, 0, 1, "img/marioTest.png");
 
-var fart = 10;
+var left = 530;
+var top = 200;
 
-bodyEl.addEventListener("keydown", flyttboks);
+var velocity = 10;
 
-function flyttboks(e) {
+bodyEl.addEventListener("keydown", moveFigure);
+
+function moveFigure(e) {
     if (e.keyCode === 37) {
-        venstre -= fart;
+        left -= velocity;
     } else if (e.keyCode === 39) {
-        venstre += fart;
+        left += velocity;
     } else if (e.keyCode === 38) {
         jumping = true;
     }
-    boksEl.style.top = topp + "px";
-    boksEl.style.left = venstre + "px";
+    //boksEl.style.top = top + "px";
+    //boksEl.style.left = left + "px";
 
-    if (jumping){
-        topp -= fart;
+    if (jumping) {
+        top -= velocity;
         jumping = false;
     }
+}
+
+function drawMainRect() {
+    ctx.fillRect(250, 250, 50, 50);
+    ctx.fillStyle = "red";
+    ctx.stroke();
 }
