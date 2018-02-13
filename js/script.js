@@ -1,33 +1,77 @@
 var bodyEl = document.querySelector("body");
 playableAreaEl = document.getElementById("playableArea");
 
-var left = 530;
-var top = 200;
-var velocity = 10;
 var jumping = false;
 
 class Person {
-    constructor(xPos, yPos, health, xVelocity, yVelocity, size, fileName) {
+    constructor(name, xPos, yPos, health, size, fileName) {
+        this.name = name;
         this.xPos = xPos;
         this.yPos = yPos;
+        this.xVelocity = 10;
+        this.yVelocity = 10;
         this.health = health;
-        this.xVelocity = xVelocity;
-        this.yVelocity = yVelocity;
         this.size = size;
         this.fileName = fileName;
     }
+
+    moveLeft() {
+        this.xPos -= this.xVelocity;
+    }
+
+    moveRight() {
+        this.xPos += this.xVelocity;
+    }
+
+    moveUp() {
+        this.yPos -= this.yVelocity;
+    }
+
+    moveDown() {
+        this.yPos += this.yVelocity;
+    }
+
+    damage(wound) {
+        if (this.health > wound) {
+            this.health -= wound;
+        } else {
+            this.health = 0;
+        }
+    }
+
+    getHealth() {
+        return this.health;
+    }
+
+    getxPos() {
+        return this.xPos;
+    }
+
+    getyPos() {
+        return this.yPos;
+    }
+
     drawCharacter() {
         var img = new Image();
         img.src = this.fileName;
+        img.id = this.name;
+        img.style.position = "absolute";
+        img.style.left = this.xPos + "px";
+        img.style.top = this.yPos + "px";
         playableAreaEl.appendChild(img);
-        img.style.left = this.xPos;
-        img.style.top = this.yPos;
-        return img.style.top;
     }
 
-    moveCharacter(){
-
+    move() {
+        var img = document.getElementById(this.name);
+        img.style.left = this.xPos + "px";
+        img.style.top = this.yPos + "px";
     }
+
+    routine(){
+        
+    }
+
+
 }
 
 class Weapon {
@@ -37,23 +81,19 @@ class Weapon {
         this.fileName = fileName;
     }
 }
-var mainSprite = new Person(500, 500, 100, 0, 0, 1, "img/marioTest.png");
+var mainSprite = new Person("Tom", 100, 100, 100, 1, "img/marioTest.png");
+var agent = new Person("Agent1", 400, 100, 100, 1, "img/agentTest.png");
 mainSprite.drawCharacter();
+agent.drawCharacter();
+bodyEl.addEventListener("keydown", handleKeydown);
 
-console.log(mainSprite.drawCharacter());
-function moveFigure(e) {
+function handleKeydown(e) {
     if (e.keyCode === 37) {
-        left -= velocity;
+        mainSprite.moveLeft();
     } else if (e.keyCode === 39) {
-        left += velocity;
+        mainSprite.moveRight();
     } else if (e.keyCode === 38) {
-        jumping = true;
+        mainSprite.moveUp();
     }
-    //boksEl.style.top = top + "px";
-    //boksEl.style.left = left + "px";
-
-    if (jumping) {
-        top -= velocity;
-        jumping = false;
-    }
+    mainSprite.move();
 }
