@@ -1,20 +1,10 @@
 body {
-    background-color: black;
+    background-color: white;
     cursor: none;
     overflow: hidden;
 }
 
-#figur{
-    width: 15px;
-	height: 15px;
-    position: absolute;
-    left: 530px;
-    right: 0;
-    top: 200px;
-    background-color: white;
-}
-#mittCanvas {
-    background-color: black;
+#mainCanvas {
     display: block;
     margin: auto;
 }
