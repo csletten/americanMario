@@ -28,6 +28,8 @@ class Weapon {
 
 var bodyEl = document.querySelector("body");
 var boksEl = document.getElementById("figur");
+var canvas = document.getElementById("mittCanvas");
+var ctx = canvas.getContext("2d");
 
 var venstre = 530;
 var topp = 200;
