@@ -1,16 +1,13 @@
 var bodyEl = document.querySelector("body");
-bodyEl.addEventListener("keydown", moveFigure);
-
+playableAreaEl = document.getElementById("playableArea");
 
 var left = 530;
 var top = 200;
 var velocity = 10;
 var jumping = false;
 
-drawMainRect();
-
 class Person {
-    constructor(xPos, yPos, health, speed, size, fileName) {
+    constructor(xPos, yPos, health, xVelocity, yVelocity, size, fileName) {
         this.xPos = xPos;
         this.yPos = yPos;
         this.health = health;
@@ -18,7 +15,17 @@ class Person {
         this.yVelocity = yVelocity;
         this.size = size;
         this.fileName = fileName;
+    }
+    drawCharacter() {
+        var img = new Image();
+        img.src = this.fileName;
+        playableAreaEl.appendChild(img);
+        img.style.left = this.xPos;
+        img.style.top = this.yPos;
+        return img.style.top;
+    }
 
+    moveCharacter(){
 
     }
 }
@@ -30,8 +37,10 @@ class Weapon {
         this.fileName = fileName;
     }
 }
-var mainSprite = new Person("50px", "50px", 100, 0, 0, 1, "marioTest.png");
+var mainSprite = new Person(500, 500, 100, 0, 0, 1, "img/marioTest.png");
+mainSprite.drawCharacter();
 
+console.log(mainSprite.drawCharacter());
 function moveFigure(e) {
     if (e.keyCode === 37) {
         left -= velocity;
