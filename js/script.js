@@ -1,10 +1,14 @@
-var canvas = document.getElementById("mainCanvas");
-var ctx = canvas.getContext("2d");
 var bodyEl = document.querySelector("body");
+bodyEl.addEventListener("keydown", moveFigure);
+
+
+var left = 530;
+var top = 200;
+var velocity = 10;
 var jumping = false;
 
 drawMainRect();
-/*
+
 class Person {
     constructor(xPos, yPos, health, speed, size, fileName) {
         this.xPos = xPos;
@@ -14,12 +18,8 @@ class Person {
         this.yVelocity = yVelocity;
         this.size = size;
         this.fileName = fileName;
-    }
 
-    draw() {
-        var img = document.createElement("img");
-        img.src = "img/" + this.fileName;
-        ctx.drawImage(img, xPos, yPos);
+
     }
 }
 
@@ -30,18 +30,7 @@ class Weapon {
         this.fileName = fileName;
     }
 }
-
-var bodyEl = document.querySelector("body");
-var boksEl = document.getElementById("figur");
-
 var mainSprite = new Person("50px", "50px", 100, 0, 0, 1, "marioTest.png");
-
-var left = 530;
-var top = 200;
-
-var velocity = 10;
-
-bodyEl.addEventListener("keydown", moveFigure);
 
 function moveFigure(e) {
     if (e.keyCode === 37) {
@@ -58,13 +47,4 @@ function moveFigure(e) {
         top -= velocity;
         jumping = false;
     }
-}
-*/
-function drawMainRect() {
-    ctx.fillRect(250, 250, 50, 50);
-    ctx.fillStyle = "red";
-    var img = new Image();
-    img.src = "img/marioTest.png"
-    ctx.drawImage(img, 10, 10);
-    ctx.stroke();
 }
