@@ -1,7 +1,7 @@
-var canvas = document.getElementById("mainCanvas");
-var ctx = canvas.getContext("2d");
+
 var bodyEl = document.querySelector("body");
 var jumping = false;
+var content = document.getElementById("content");
 
 drawMainRect();
 /*
@@ -68,3 +68,20 @@ function drawMainRect() {
     ctx.drawImage(img, 10, 10);
     ctx.stroke();
 }
+
+
+
+//Testing if div element is movable
+function moveContent(px) {
+    var top = content.position().top;
+    content.css("top", top+px);
+}
+
+$(document).keydown(function(e){
+    if (e.keyCode == 38) { 
+       moveContent(-5);
+    }
+    if (e.keyCode == 40) { 
+       moveContent(5);
+    }
+});

@@ -1,10 +1,12 @@
-body {
-    background-color: white;
-    cursor: none;
+.playableArea {
+    position: relative;
+    height: 50px;
+    width: 200px;
     overflow: hidden;
+    border: 1px solid blue;
 }
 
-#mainCanvas {
-    display: block;
-    margin: auto;
+.content {
+    position: absolute;
+    top: 0px;
 }
