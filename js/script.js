@@ -67,8 +67,7 @@ class Person {
         img.style.top = this.yPos + "px";
     }
 
-    routine(){
-        
+    routine(){   
     }
 
 
@@ -93,7 +92,24 @@ function handleKeydown(e) {
     } else if (e.keyCode === 39) {
         mainSprite.moveRight();
     } else if (e.keyCode === 38) {
-        mainSprite.moveUp();
+        jumping = true;
+        jump();
     }
     mainSprite.move();
+}
+
+var mainChar = document.getElementById("Tom");
+
+function jump(){
+    if (jumping){
+        mainChar.classList.add('animateJump');
+        jumping = false;
+    }
+}
+
+mainChar.addEventListener("animationend", stopJump);
+
+function stopJump(){
+    console.log("Suksess");
+    mainChar.classList.remove('animateJump');
 }

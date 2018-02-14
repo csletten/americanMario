@@ -10,3 +10,22 @@
     position: absolute;
     top: 0px;
 }
+
+.animateJump {
+    animation: jump 0.5s;     
+} 
+@keyframes jump{
+    0% { top: 100px; }
+    5% { top: 90px; }
+    10% { top: 80px; }
+    20% { top: 70px; }
+    30% { top: 60px; }
+    40% { top: 50px; }
+    50% { top: 40px; }
+    60% { top: 50px; }
+    70% { top: 60px; }
+    80% { top: 70px; }
+    90% { top: 80px; }
+    95% { top: 90px; }
+    100% { top: 100 px; }
+}
