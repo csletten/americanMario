@@ -1,6 +1,6 @@
 var bodyEl = document.querySelector("body");
 var canvas = document.getElementById("mainCanvas");
-var ctx = canvas.getContext("2d"); 
+var ctx = canvas.getContext("2d");
 
 var jumping = false;
 
@@ -25,7 +25,7 @@ class Person {
     }
 
     moveUp() {
-        this.yPos -= this.yVelocity;
+        for (var i = 0; i <)
     }
 
     moveDown() {
@@ -40,27 +40,29 @@ class Person {
         }
     }
 
-    getHealth() {
-        return this.health;
-    }
 
-    getxPos() {
-        return this.xPos;
-    }
+getHealth() {
+    return this.health;
+}
 
-    getyPos() {
-        return this.yPos;
-    }
+getxPos() {
+    return this.xPos;
+}
 
-    drawCharacter() {
-        var img = new Image();
-        img.src = this.fileName;
-        img.id = this.name;
-        ctx.drawImage(img,this.xPos,this.yPos);
-    }
+getyPos() {
+    return this.yPos;
+}
 
-    routine(){   
-    }
+drawCharacter() {
+    var img = new Image();
+    img.src = this.fileName;
+    img.id = this.name;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.drawImage(img, this.xPos, this.yPos);
+}
+
+routine(){
+}
 }
 
 class Weapon {
@@ -71,10 +73,16 @@ class Weapon {
         this.fileName = fileName;
     }
 }
-var mainSprite = new Person("Tom", 50, 50, 100, 1, "img/marioTest.png");
-// var agent = new Person("Agent1", 1, 1, 100, 1, "img/agentTest.png");
+
+var gaaBilde = new Image();
+bilde.src = "img/cdsvfd";
+
+var hoppeBilde =
+
+var mainSprite = new Person("Lincoln", 50, 50, 100, 1, "img/marioTest.png");
+var agent = new Person("Agent1", 100, 100, 100, 1, "img/agentTest.png");
 mainSprite.drawCharacter();
-//  agent.drawCharacter();
+agent.drawCharacter();
 bodyEl.addEventListener("keydown", handleKeydown);
 
 function handleKeydown(e) {
@@ -88,21 +96,19 @@ function handleKeydown(e) {
     }
     mainSprite.drawCharacter();
 }
-/*
-var mainChar = document.getElementById("Tom");
 
-function jump(){
-    if (jumping){
-        mainChar.classList.add('animateJump');
+// var mainChar = document.getElementById("Lincoln");
+
+
+function jump() {
+    if (jumping) {
         jumping = false;
     }
 }
 
-mainChar.addEventListener("animationend", stopJump);
+// mainChar.addEventListener("animationend", stopJump);
 
-function stopJump(){
+function stopJump() {
     console.log("Suksess");
-    mainChar.classList.remove('animateJump');
+    // mainChar.classList.remove('animateJump');
 }
-
-*/
