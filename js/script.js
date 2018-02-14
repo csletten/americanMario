@@ -3,24 +3,75 @@ var bodyEl = document.querySelector("body");
 var jumping = false;
 var content = document.getElementById("content");
 
-drawMainRect();
-/*
 class Person {
-    constructor(xPos, yPos, health, speed, size, fileName) {
+    constructor(name, xPos, yPos, health, size, fileName) {
+        this.name = name;
         this.xPos = xPos;
         this.yPos = yPos;
+        this.xVelocity = 10;
+        this.yVelocity = 10;
         this.health = health;
-        this.xVelocity = xVelocity;
-        this.yVelocity = yVelocity;
         this.size = size;
         this.fileName = fileName;
     }
 
-    draw() {
-        var img = document.createElement("img");
-        img.src = "img/" + this.fileName;
-        ctx.drawImage(img, xPos, yPos);
+    moveLeft() {
+        this.xPos -= this.xVelocity;
     }
+
+    moveRight() {
+        this.xPos += this.xVelocity;
+    }
+
+    moveUp() {
+        this.yPos -= this.yVelocity;
+    }
+
+    moveDown() {
+        this.yPos += this.yVelocity;
+    }
+
+    damage(wound) {
+        if (this.health > wound) {
+            this.health -= wound;
+        } else {
+            this.health = 0;
+        }
+    }
+
+    getHealth() {
+        return this.health;
+    }
+
+    getxPos() {
+        return this.xPos;
+    }
+
+    getyPos() {
+        return this.yPos;
+    }
+
+    drawCharacter() {
+        var img = new Image();
+        img.src = this.fileName;
+        img.id = this.name;
+        img.style.position = "absolute";
+        img.style.left = this.xPos + "px";
+        img.style.top = this.yPos + "px";
+        playableAreaEl.appendChild(img);
+    }
+
+    move() {
+        var img = document.getElementById(this.name);
+        img.style.left = this.xPos + "px";
+        img.style.top = this.yPos + "px";
+    }
+
+    routine(){
+        
+    }
+
+
 }
 
 class Weapon {
@@ -30,58 +81,19 @@ class Weapon {
         this.fileName = fileName;
     }
 }
+var mainSprite = new Person("Tom", 100, 100, 100, 1, "img/marioTest.png");
+var agent = new Person("Agent1", 400, 100, 100, 1, "img/agentTest.png");
+mainSprite.drawCharacter();
+agent.drawCharacter();
+bodyEl.addEventListener("keydown", handleKeydown);
 
-var bodyEl = document.querySelector("body");
-var boksEl = document.getElementById("figur");
-
-var mainSprite = new Person("50px", "50px", 100, 0, 0, 1, "marioTest.png");
-
-var left = 530;
-var top = 200;
-
-var velocity = 10;
-
-bodyEl.addEventListener("keydown", moveFigure);
-
-function moveFigure(e) {
+function handleKeydown(e) {
     if (e.keyCode === 37) {
-        left -= velocity;
+        mainSprite.moveLeft();
     } else if (e.keyCode === 39) {
-        left += velocity;
+        mainSprite.moveRight();
     } else if (e.keyCode === 38) {
-        jumping = true;
+        mainSprite.moveUp();
     }
-    //boksEl.style.top = top + "px";
-    //boksEl.style.left = left + "px";
-
-    if (jumping) {
-        top -= velocity;
-        jumping = false;
-    }
+    mainSprite.move();
 }
-*/
-function drawMainRect() {
-    ctx.fillRect(250, 250, 50, 50);
-    ctx.fillStyle = "red";
-    var img = new Image();
-    img.src = "img/marioTest.png"
-    ctx.drawImage(img, 10, 10);
-    ctx.stroke();
-}
-
-
-
-//Testing if div element is movable
-function moveContent(px) {
-    var top = content.position().top;
-    content.css("top", top+px);
-}
-
-$(document).keydown(function(e){
-    if (e.keyCode == 38) { 
-       moveContent(-5);
-    }
-    if (e.keyCode == 40) { 
-       moveContent(5);
-    }
-});
