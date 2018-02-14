@@ -1,7 +1,8 @@
 var bodyEl = document.querySelector("body");
+var canvas = document.getElementById("mainCanvas");
+var ctx = canvas.getContext("2d"); 
+
 var jumping = false;
-var playableAreaEl = document.getElementById("playableArea");
-var content = document.getElementById("content");
 
 class Person {
     constructor(name, xPos, yPos, health, size, fileName) {
@@ -55,35 +56,25 @@ class Person {
         var img = new Image();
         img.src = this.fileName;
         img.id = this.name;
-        img.style.position = "absolute";
-        img.style.left = this.xPos + "px";
-        img.style.top = this.yPos + "px";
-        playableAreaEl.appendChild(img);
-    }
-
-    move() {
-        var img = document.getElementById(this.name);
-        img.style.left = this.xPos + "px";
-        img.style.top = this.yPos + "px";
+        ctx.drawImage(img,this.xPos,this.yPos);
     }
 
     routine(){   
     }
-
-
 }
 
 class Weapon {
-    constructor(type, firerate, fileName) {
+    constructor(type, firerate, damage, fileName) {
         this.type = type;
+        this.damage = damage;
         this.firerate = firerate;
         this.fileName = fileName;
     }
 }
-var mainSprite = new Person("Tom", 100, 100, 100, 1, "img/marioTest.png");
-var agent = new Person("Agent1", 400, 100, 100, 1, "img/agentTest.png");
+var mainSprite = new Person("Tom", 50, 50, 100, 1, "img/marioTest.png");
+// var agent = new Person("Agent1", 1, 1, 100, 1, "img/agentTest.png");
 mainSprite.drawCharacter();
-agent.drawCharacter();
+//  agent.drawCharacter();
 bodyEl.addEventListener("keydown", handleKeydown);
 
 function handleKeydown(e) {
@@ -93,11 +84,11 @@ function handleKeydown(e) {
         mainSprite.moveRight();
     } else if (e.keyCode === 38) {
         jumping = true;
-        jump();
+        // jump();
     }
-    mainSprite.move();
+    mainSprite.drawCharacter();
 }
-
+/*
 var mainChar = document.getElementById("Tom");
 
 function jump(){
@@ -113,3 +104,5 @@ function stopJump(){
     console.log("Suksess");
     mainChar.classList.remove('animateJump');
 }
+
+*/

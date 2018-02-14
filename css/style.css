@@ -1,14 +1,5 @@
-.playableArea {
-    position: relative;
-    height: 50px;
-    width: 200px;
-    overflow: hidden;
-    border: 1px solid blue;
-}
-
-.content {
-    position: absolute;
-    top: 0px;
+#mainCanvas {
+    background-color: red;
 }
 
 .animateJump {
