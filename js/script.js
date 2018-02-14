@@ -1,6 +1,6 @@
-
 var bodyEl = document.querySelector("body");
 var jumping = false;
+var playableAreaEl = document.getElementById("playableArea");
 var content = document.getElementById("content");
 
 class Person {
