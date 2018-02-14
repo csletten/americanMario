@@ -1,12 +1,12 @@
 .playableArea {
-    position: relative;
-    height: 50px;
-    width: 200px;
+    background-color: #333;
     overflow: hidden;
-    border: 1px solid blue;
+    white-space: nowrap;
+    width: 1000px;
+    height: 100px;
 }
 
-.content {
-    position: absolute;
-    top: 0px;
+
+.content{
+    border: red;
 }
