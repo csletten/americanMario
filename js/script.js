@@ -25,7 +25,7 @@ class Person {
     }
 
     moveUp() {
-        for (var i = 0; i <)
+        //for (var i = 0; i <)
     }
 
     moveDown() {
@@ -73,11 +73,6 @@ class Weapon {
         this.fileName = fileName;
     }
 }
-
-var gaaBilde = new Image();
-bilde.src = "img/cdsvfd";
-
-var hoppeBilde =
 
 var mainSprite = new Person("Lincoln", 50, 50, 100, 1, "img/marioTest.png");
 var agent = new Person("Agent1", 100, 100, 100, 1, "img/agentTest.png");
