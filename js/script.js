@@ -2,6 +2,10 @@ var bodyEl = document.querySelector("body");
 var jumping = false;
 var playableAreaEl = document.getElementById("playableArea");
 var content = document.getElementById("content");
+var canvas = document.getElementById("canvas");
+var ctx = canvas.getContext("2d");
+
+
 
 class Person {
     constructor(name, xPos, yPos, health, size, fileName) {
@@ -9,7 +13,7 @@ class Person {
         this.xPos = xPos;
         this.yPos = yPos;
         this.xVelocity = 10;
-        this.yVelocity = 10;
+        this.yVelocity = 30;
         this.health = health;
         this.size = size;
         this.fileName = fileName;
@@ -23,8 +27,9 @@ class Person {
         this.xPos += this.xVelocity;
     }
 
-    moveUp() {
+    moveUp(e) {
         this.yPos -= this.yVelocity;
+
     }
 
     moveDown() {
@@ -67,13 +72,22 @@ class Person {
         img.style.top = this.yPos + "px";
     }
 
-    routine(){
-        
+    routine() {
+
     }
 
-
+    playerBounds() {
+        mainSprite.xPos += this.xVelocity;
+        if (mainSprite.xPos < 0) {
+            console.log("ja");
+            //this.xVelocity = 10;
+        } else if (mainSprite.xPos > canvas.width) {
+            //this.xVelocity = -10;
+            console.log("ja");
+        }
+    
+    }
 }
-
 class Weapon {
     constructor(type, firerate, fileName) {
         this.type = type;
@@ -86,6 +100,7 @@ var agent = new Person("Agent1", 400, 100, 100, 1, "img/agentTest.png");
 mainSprite.drawCharacter();
 agent.drawCharacter();
 bodyEl.addEventListener("keydown", handleKeydown);
+mainSprite.playerBounds();
 
 function handleKeydown(e) {
     if (e.keyCode === 37) {
@@ -97,3 +112,18 @@ function handleKeydown(e) {
     }
     mainSprite.move();
 }
+
+
+function playerBounds() {
+    mainSprite.xPos += mainSprite.xVelocity;
+    if (mainSprite.xPos < 0) {
+        mainSprite.xVelocity = 10;
+    } else if (mainSprite.xPos > canvas.width) {
+        mainSprite.xVelocity = -10;
+    }
+
+}
+
+
+ctx.fillstyle = "green";
+ctx.fillRect(0,60,500,200);

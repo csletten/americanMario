@@ -10,3 +10,12 @@
 .content{
     border: red;
 }
+
+
+#canvas{
+    width: 500px;
+    height:400px;
+    background-color: lightblue;
+    margin: auto;
+}
+
