@@ -1,3 +1,21 @@
-#mainCanvas {
-    background-color: white;
+.playableArea {
+    background-color: #333;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 1000px;
+    height: 100px;
 }
+
+
+.content{
+    border: red;
+}
+
+
+#canvas{
+    width: 500px;
+    height:400px;
+    background-color: lightblue;
+    margin: auto;
+}
+

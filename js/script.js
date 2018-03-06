@@ -1,19 +1,28 @@
 var bodyEl = document.querySelector("body");
-var canvas = document.getElementById("mainCanvas");
+var isJumping = false;
+var playableAreaEl = document.getElementById("playableArea");
+var content = document.getElementById("content");
+var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
 
-var jumping = false;
+var marioBilde = new Image;
+marioBilde.src = "img/marioTest.png";
+
+var agentBilde = new Image;
+agentBilde.src = "img/agentTest.png";
+
+
 
 class Person {
-    constructor(name, xPos, yPos, health, size, fileName) {
+    constructor(name, xPos, yPos, health, size, imageEl) {
         this.name = name;
         this.xPos = xPos;
         this.yPos = yPos;
         this.xVelocity = 10;
-        this.yVelocity = 10;
+        this.jumpSpeed = 5;
         this.health = health;
         this.size = size;
-        this.fileName = fileName;
+        this.imageEl = imageEl;
     }
 
     moveLeft() {
@@ -22,14 +31,6 @@ class Person {
 
     moveRight() {
         this.xPos += this.xVelocity;
-    }
-
-    moveUp() {
-        //for (var i = 0; i <)
-    }
-
-    moveDown() {
-        this.yPos += this.yVelocity;
     }
 
     damage(wound) {
@@ -41,30 +42,48 @@ class Person {
     }
 
 
-getHealth() {
-    return this.health;
-}
+    drawCharacter() {
+        this.imageEl.style.position = "absolute";
+        this.imageEl.style.left = this.xPos + "px";
+        this.imageEl.style.top = this.yPos + "px";
+        playableAreaEl.appendChild(this.imageEl);
+    }
 
-getxPos() {
-    return this.xPos;
-}
+    move() {
+        this.imageEl.style.left = this.xPos + "px";
+        this.imageEl.style.top = this.yPos + "px";
+    }
 
-getyPos() {
-    return this.yPos;
-}
+    jump() {
+        var jumpint = setInterval(function() {
+            this.yPos=this.yPos-jumpSpeed;
+            if(this.yPos<=100)
+            {
+                isJumping == false;
+                clearInterval(jumpint);
+                alert("it works");
+            }
+        }, 100000);
+        
+    }
 
-drawCharacter() {
-    var img = new Image();
-    img.src = this.fileName;
-    img.id = this.name;
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.drawImage(img, this.xPos, this.yPos);
-}
+    routine() {
 
-routine(){
-}
-}
+    }
+    /*
+    playerBounds() {
+        mainSprite.xPos += this.xVelocity;
+        if (mainSprite.xPos < 0) {
+            console.log("ja");
+            //this.xVelocity = 10;
+        } else if (mainSprite.xPos > canvas.width) {
+            //this.xVelocity = -10;
+            console.log("ja");
+        }
 
+    }
+    */
+}
 class Weapon {
     constructor(type, firerate, damage, fileName) {
         this.type = type;
@@ -73,12 +92,12 @@ class Weapon {
         this.fileName = fileName;
     }
 }
-
-var mainSprite = new Person("Lincoln", 50, 50, 100, 1, "img/marioTest.png");
-var agent = new Person("Agent1", 100, 100, 100, 1, "img/agentTest.png");
+var mainSprite = new Person("Tom", 100, 100, 100, 1, marioBilde);
+var agent = new Person("Agent1", 400, 100, 100, 1, agentBilde);
 mainSprite.drawCharacter();
 agent.drawCharacter();
 bodyEl.addEventListener("keydown", handleKeydown);
+//mainSprite.playerBounds();
 
 function handleKeydown(e) {
     if (e.keyCode === 37) {
@@ -86,24 +105,54 @@ function handleKeydown(e) {
     } else if (e.keyCode === 39) {
         mainSprite.moveRight();
     } else if (e.keyCode === 38) {
-        jumping = true;
-        // jump();
+        mainSprite.jump();
     }
     mainSprite.drawCharacter();
 }
 
-// var mainChar = document.getElementById("Lincoln");
 
-
-function jump() {
-    if (jumping) {
-        jumping = false;
+function playerBounds() {
+    mainSprite.xPos += mainSprite.xVelocity;
+    if (mainSprite.xPos < 0) {
+        mainSprite.xVelocity = 10;
+    } else if (mainSprite.xPos > canvas.width) {
+        mainSprite.xVelocity = -10;
     }
+
 }
 
-// mainChar.addEventListener("animationend", stopJump);
+console.log(mainSprite.yPos);
 
-function stopJump() {
-    console.log("Suksess");
-    // mainChar.classList.remove('animateJump');
+/*
+if (mainSprite.yPos == 100){
+    console.log("Bra if-test");
 }
+*/
+
+
+// Style
+ctx.fillstyle = "green";
+ctx.fillRect(0, 60, 500, 200);
+
+
+/* 
+isJumping = true;
+// console.log(this.xPos);
+setInterval(function () {
+    console.log("function check");
+    if (this.yPos == 100) {
+        /*
+        isJumping == false;
+       
+        clearInterval(jumpInt);
+        jumpInt = 0;
+        console.log("it works");
+        // return;
+        */
+        /*console.log("Bra if-test");
+    } else {
+        this.yPos = this.yPos - this.jumpSpeed;
+        console.log("Dårlig if-test");
+    }    
+}, 100000);
+*/
