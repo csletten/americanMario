@@ -66,24 +66,14 @@ class Person {
     }
 
     jump() {
-        isJumping = true;
-        // console.log(this.xPos);
-        setInterval(function () {
-            console.log("function check");
-            if (this.yPos == 100) {
-                /*
+        var jumpint = setInterval(function() {
+            this.yPos=this.yPos-jumpSpeed;
+            if(this.yPos<=100)
+            {
                 isJumping == false;
-               
-                clearInterval(jumpInt);
-                jumpInt = 0;
-                console.log("it works");
-                // return;
-                */
-                console.log("Bra if-test");
-            } else {
-                this.yPos = this.yPos - this.jumpSpeed;
-                console.log("Dårlig if-test");
-            }    
+                clearInterval(jumpint);
+                alert("it works");
+            }
         }, 100000);
         
     }
@@ -153,3 +143,26 @@ if (mainSprite.yPos == 100){
 // Style
 ctx.fillstyle = "green";
 ctx.fillRect(0, 60, 500, 200);
+
+
+/* 
+isJumping = true;
+// console.log(this.xPos);
+setInterval(function () {
+    console.log("function check");
+    if (this.yPos == 100) {
+        /*
+        isJumping == false;
+       
+        clearInterval(jumpInt);
+        jumpInt = 0;
+        console.log("it works");
+        // return;
+        */
+        /*console.log("Bra if-test");
+    } else {
+        this.yPos = this.yPos - this.jumpSpeed;
+        console.log("Dårlig if-test");
+    }    
+}, 100000);
+*/
