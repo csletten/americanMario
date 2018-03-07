@@ -1,9 +1,10 @@
 var bodyEl = document.querySelector("body");
 var isJumping = false;
-var playableAreaEl = document.getElementById("playableArea");
-var content = document.getElementById("content");
-var canvas = document.getElementById("canvas");
-var ctx = canvas.getContext("2d");
+var canvasEl = document.getElementById("canvas");
+var ctx = canvasEl.getContext("2d");
+
+var mapHeight = (canvasEl.height / 3) * 2;
+var gravity = 1;
 
 var marioBilde = new Image;
 marioBilde.src = "img/marioTest.png";
@@ -11,15 +12,13 @@ marioBilde.src = "img/marioTest.png";
 var agentBilde = new Image;
 agentBilde.src = "img/agentTest.png";
 
-
-
 class Person {
     constructor(name, xPos, yPos, health, size, imageEl) {
         this.name = name;
         this.xPos = xPos;
         this.yPos = yPos;
         this.xVelocity = 10;
-        this.jumpSpeed = 5;
+        this.jumpSpeed = -10;
         this.health = health;
         this.size = size;
         this.imageEl = imageEl;
@@ -41,48 +40,21 @@ class Person {
         }
     }
 
-
-    drawCharacter() {
-        this.imageEl.style.position = "absolute";
-        this.imageEl.style.left = this.xPos + "px";
-        this.imageEl.style.top = this.yPos + "px";
-        playableAreaEl.appendChild(this.imageEl);
-    }
-
-    move() {
-        this.imageEl.style.left = this.xPos + "px";
-        this.imageEl.style.top = this.yPos + "px";
-    }
-
     jump() {
-        var jumpint = setInterval(function() {
-            this.yPos=this.yPos-jumpSpeed;
-            if(this.yPos<=100)
-            {
-                isJumping == false;
-                clearInterval(jumpint);
-                alert("it works");
-            }
-        }, 100000);
-        
+        console.log("Jawad");
+        // this.jumpSpeed += gravity;
+        // console.log("jumpSpeed" + this.jumpSpeed);
+        // this.yPos += this.jumpSpeed;
+        window.requestAnimationFrame(jump);
     }
+
+
+
+
 
     routine() {
 
     }
-    /*
-    playerBounds() {
-        mainSprite.xPos += this.xVelocity;
-        if (mainSprite.xPos < 0) {
-            console.log("ja");
-            //this.xVelocity = 10;
-        } else if (mainSprite.xPos > canvas.width) {
-            //this.xVelocity = -10;
-            console.log("ja");
-        }
-
-    }
-    */
 }
 class Weapon {
     constructor(type, firerate, damage, fileName) {
@@ -92,12 +64,31 @@ class Weapon {
         this.fileName = fileName;
     }
 }
-var mainSprite = new Person("Tom", 100, 100, 100, 1, marioBilde);
-var agent = new Person("Agent1", 400, 100, 100, 1, agentBilde);
-mainSprite.drawCharacter();
-agent.drawCharacter();
-bodyEl.addEventListener("keydown", handleKeydown);
-//mainSprite.playerBounds();
+
+startGame();
+
+function startGame() {
+    window.mainSprite = new Person("Tom", 100, mapHeight - marioBilde.height, 100, 1, marioBilde);
+    window.agentTest = new Person("Agent1", 400, mapHeight - agentBilde.height, 100, 1, agentBilde);
+
+    bodyEl.addEventListener("keydown", handleKeydown);
+}
+
+function drawFloor() {
+    ctx.fillStyle = "#943E0F";
+    ctx.fillRect(0, mapHeight, canvasEl.width, canvasEl.height / 3);
+}
+
+function update() {
+    ctx.clearRect(0, 0, canvasEl.width, canvasEl.height);
+    drawFloor();
+    ctx.drawImage(mainSprite.imageEl, mainSprite.xPos, mainSprite.yPos);
+    ctx.drawImage(agentTest.imageEl, agentTest.xPos, agentTest.yPos);
+    window.requestAnimationFrame(jump);
+    // window.requestAnimationFrame(drawFloor);
+}
+
+update();
 
 function handleKeydown(e) {
     if (e.keyCode === 37) {
@@ -107,33 +98,20 @@ function handleKeydown(e) {
     } else if (e.keyCode === 38) {
         mainSprite.jump();
     }
-    mainSprite.drawCharacter();
+    update();
 }
+
 
 
 function playerBounds() {
     mainSprite.xPos += mainSprite.xVelocity;
     if (mainSprite.xPos < 0) {
         mainSprite.xVelocity = 10;
-    } else if (mainSprite.xPos > canvas.width) {
+    } else if (mainSprite.xPos > canvasEl.width) {
         mainSprite.xVelocity = -10;
     }
 
 }
-
-console.log(mainSprite.yPos);
-
-/*
-if (mainSprite.yPos == 100){
-    console.log("Bra if-test");
-}
-*/
-
-
-// Style
-ctx.fillstyle = "green";
-ctx.fillRect(0, 60, 500, 200);
-
 
 /* 
 isJumping = true;
