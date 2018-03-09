@@ -6,11 +6,11 @@ var ctx = canvasEl.getContext("2d");
 var mapHeight = (canvasEl.height / 3) * 2;
 var gravity = 1;
 
-var marioBilde = new Image;
-marioBilde.src = "img/marioTest.png";
+var lincolnBilde1 = new Image;
+lincolnBilde1.src = "img/lincoln_side_1.png";
 
-var agentBilde = new Image;
-agentBilde.src = "img/agentTest.png";
+var fbiBilde = new Image;
+fbiBilde.src = "img/fbiBilde.png";
 
 class Person {
     constructor(name, xPos, yPos, health, size, imageEl) {
@@ -68,8 +68,8 @@ class Weapon {
 startGame();
 
 function startGame() {
-    window.mainSprite = new Person("Tom", 100, mapHeight - marioBilde.height, 100, 1, marioBilde);
-    window.agentTest = new Person("Agent1", 400, mapHeight - agentBilde.height, 100, 1, agentBilde);
+    window.mainSprite = new Person("Tom", 100, mapHeight - lincolnBilde1.height, 100, 1, lincolnBilde1);
+    window.agentTest = new Person("Agent1", 400, mapHeight - fbiBilde.height, 100, 1, fbiBilde);
 
     bodyEl.addEventListener("keydown", handleKeydown);
 }
