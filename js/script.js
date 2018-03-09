@@ -7,10 +7,10 @@ var mapHeight = (canvasEl.height / 3) * 2;
 var gravity = 1;
 
 var lincolnBilde1 = new Image;
-lincolnBilde1.src = "img/lincoln_side_1.png";
+lincolnBilde1.src = "img/lincolnSide1.png";
 
 var fbiBilde = new Image;
-fbiBilde.src = "img/fbiBilde.png";
+fbiBilde.src = "img/fbi.png";
 
 class Person {
     constructor(name, xPos, yPos, health, size, imageEl) {
