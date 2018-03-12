@@ -41,16 +41,11 @@ class Person {
     }
 
     jump() {
-        console.log("Jawad");
-        // this.jumpSpeed += gravity;
-        // console.log("jumpSpeed" + this.jumpSpeed);
-        // this.yPos += this.jumpSpeed;
+        this.jumpSpeed += gravity;
+        console.log("jumpSpeed" + this.jumpSpeed);
+        this.yPos += this.jumpSpeed;
         window.requestAnimationFrame(jump);
     }
-
-
-
-
 
     routine() {
 
