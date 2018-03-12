@@ -12,6 +12,9 @@ lincolnBilde1.src = "img/lincolnSide1.png";
 var fbiBilde = new Image;
 fbiBilde.src = "img/fbi.png";
 
+var bushBilde = new Image;
+bushBilde.src = "img/kaktus.png";
+
 class Person {
     constructor(name, xPos, yPos, health, size, imageEl) {
         this.name = name;
@@ -65,6 +68,7 @@ startGame();
 function startGame() {
     window.mainSprite = new Person("Tom", 100, mapHeight - lincolnBilde1.height, 100, 1, lincolnBilde1);
     window.agentTest = new Person("Agent1", 400, mapHeight - fbiBilde.height, 100, 1, fbiBilde);
+    window.bush = new Person("Mr.Bush", 200, mapHeight - bushBilde.height, 100, 1, bushBilde);
 
     bodyEl.addEventListener("keydown", handleKeydown);
 }
@@ -79,7 +83,8 @@ function update() {
     drawFloor();
     ctx.drawImage(mainSprite.imageEl, mainSprite.xPos, mainSprite.yPos);
     ctx.drawImage(agentTest.imageEl, agentTest.xPos, agentTest.yPos);
-    window.requestAnimationFrame(jump);
+    ctx.drawImage(bush.imageEl, bush.xPos, bush.yPos);
+   window.requestAnimationFrame(jump);
     // window.requestAnimationFrame(drawFloor);
 }
 
@@ -97,7 +102,7 @@ function handleKeydown(e) {
 }
 
 
-
+/*
 function playerBounds() {
     mainSprite.xPos += mainSprite.xVelocity;
     if (mainSprite.xPos < 0) {
@@ -107,7 +112,7 @@ function playerBounds() {
     }
 
 }
-
+*/
 /* 
 isJumping = true;
 // console.log(this.xPos);

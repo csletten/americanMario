@@ -1,0 +1,56 @@
+body{
+    background-image: url('img/plakat.jpg'); 
+    background-color: rgba(0, 102, 255, 0.795);
+}
+
+.wrapper {
+    text-align: center;
+}
+
+#startGame {
+    position: absolute;
+    top: 30%;
+    background-color: lightseagreen;
+    border: none;
+    color: black;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size:30px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+#how {
+    position: absolute;
+    top: 50%;
+    background-color: lightseagreen;
+    border: none;
+    color: black;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 30px;
+    margin: 4px 2px;
+    cursor: pointer;
+    
+}
+
+#return {
+    position: absolute;
+    top: 90%;
+    background-color: lightseagreen;
+    border: none;
+    color: black;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 30px;
+    margin: 4px 2px;
+    cursor: pointer;
+   
+    
+}
